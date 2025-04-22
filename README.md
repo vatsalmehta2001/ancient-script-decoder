@@ -1,6 +1,5 @@
 # Ancient Egyptian Script Decipherment Assistant
 
-## Personal Journey
 My passion for ancient Egyptian history was ignited through conversations on Joe Rogan's podcast featuring Graham Hancock and Randall Carlson. Their discussions led me down a fascinating rabbit hole exploring Egyptian mythology, hieroglyphics, and the mysteries surrounding their ancient civilization. I was particularly captivated to learn that even Nikola Tesla was once extremely passionate about Egyptian origins and the true purpose of the pyramids. This project represents my first step in combining my interests in ancient history with modern AI technology.
 
 ## Project Overview
