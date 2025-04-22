@@ -22,7 +22,39 @@ This project uses deep learning to recognize and decipher ancient Egyptian hiero
 - **Comprehensive Evaluation**: Detailed metrics and visualizations to understand model performance
 - **Detection System**: Automatically detects and segments individual hieroglyphs in complex scenes
 
-![Model Architecture](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/model_architecture.png)
+## Model Architecture
+
+The system uses a custom-designed hierarchical neural network architecture that combines:
+
+1. **Convolutional Neural Network (CNN)** with residual connections and squeeze-excitation blocks
+2. **EfficientNetV2S** for transfer learning capabilities
+3. **Vision Transformer (ViT)** for attention-based feature extraction
+
+![Model Architecture Diagram](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/model_architecture_diagram.png)
+*Detailed architecture diagram of the advanced 82.66% accuracy model showing the three parallel branches (CNN, EfficientNet, and Vision Transformer) and how they're combined for hieroglyph classification.*
+
+### Advanced Training Techniques
+
+The model was trained using several advanced techniques:
+
+- Learning rate warmup with cosine decay
+- Label smoothing for better generalization
+- Mixed precision training for improved performance
+- Dropout and batch normalization for regularization
+
+## Model Performance Visualizations
+
+### Sample Hieroglyphs
+![Sample Hieroglyphs](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/sample_hieroglyphs.png)
+*A selection of hieroglyph images from the advanced model training dataset (82.66% accuracy model) showing the variety of symbols and their Gardiner codes.*
+
+### Data Augmentation
+![Augmentation Examples](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/augmentation_examples.png)
+*Examples of data augmentation techniques used in the advanced model training (82.66% accuracy) applied to hieroglyph images, increasing the diversity of the training data.*
+
+### Class Distribution
+![Class Distribution](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/class_distribution.png)
+*Distribution of the top 30 hieroglyph classes by sample count in the advanced model dataset (82.66% accuracy model).*
 
 ## Dataset
 
@@ -33,17 +65,6 @@ This project uses a dataset compiled from various sources containing:
 - Various lighting, angles, and contexts for robust recognition
 
 The raw dataset was obtained from the [EgyptianHieroglyphicText](https://github.com/rfuentesfe/EgyptianHieroglyphicText/tree/main) repository, which provides a comprehensive collection of hieroglyph images structured according to Gardiner's classification system. This dataset consists of 310 classes and 13,729 images representing hieroglyphs on different materials, including carved or painted stone stelae.
-
-## Advanced Training Techniques
-
-I implemented several advanced techniques to achieve high recognition accuracy:
-
-- Learning rate warmup with cosine decay
-- Label smoothing for better generalization
-- Mixed precision training for improved performance
-- Dropout and batch normalization for regularization
-
-![Example Recognition](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/example_recognition.png)
 
 ## Project Structure
 
@@ -183,22 +204,6 @@ The model showed clear progression through training:
    - Accuracy reached its peak at 82.66% (epoch 60)
    - Validation accuracy plateaued, triggering early stopping at epoch 68
    - Top-3 accuracy stabilized at ~95%
-
-## Visualizations
-
-The training process generated several informative visualizations that help understand both the dataset and the model's performance:
-
-### Sample Hieroglyphs
-![Sample Hieroglyphs](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/sample_hieroglyphs.png)
-*A selection of hieroglyph images from the advanced model training dataset (82.66% accuracy model) showing the variety of symbols and their Gardiner codes.*
-
-### Data Augmentation
-![Augmentation Examples](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/augmentation_examples.png)
-*Examples of data augmentation techniques used in the advanced model training (82.66% accuracy) applied to hieroglyph images, increasing the diversity of the training data.*
-
-### Class Distribution
-![Class Distribution](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/class_distribution.png)
-*Distribution of the top 30 hieroglyph classes by sample count in the advanced model dataset (82.66% accuracy model).*
 
 ## Technical Details
 
