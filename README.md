@@ -5,36 +5,40 @@ My passion for ancient Egyptian history was ignited through conversations on Joe
 ## Project Overview
 This project uses deep learning to recognize and decipher ancient Egyptian hieroglyphs. The system can identify individual hieroglyphs from the Gardiner Sign List using computer vision and machine learning techniques.
 
-**Note: This project is just the beginning and is nowhere near finished.** Currently, the system can identify hieroglyphic symbols with confidence levels, but a comprehensive translation system with complete meanings for each code is still in development.
+**Note: This project is continuously evolving.** Currently, the system can identify hieroglyphic symbols with high confidence levels using a state-of-the-art advanced model.
 
 ## Features
 
-- **Hieroglyph Recognition**: Identifies individual hieroglyphs from images with high accuracy (93.8% on test set)
-- **Multiple Model Architectures**: Includes CNN, EfficientNet, and Transformer-based models
+- **Advanced Hieroglyph Recognition**: Identifies individual hieroglyphs from images with high accuracy (82.66% top-1, 95% top-3 accuracy)
+- **State-of-the-Art Architecture**: Implements TensorFlow-based CNN model with residual connections and advanced training techniques
+- **Optimized Learning Rate Scheduling**: Uses cosine decay with warmup for improved convergence
 - **Web Interface**: User-friendly Streamlit application for uploading and analyzing hieroglyphic texts
 - **Comprehensive Evaluation**: Detailed metrics and visualizations to understand model performance
 - **Detection System**: Automatically detects and segments individual hieroglyphs in complex scenes
 
 ## Dataset
 
-This project uses a dataset compiled by Morris Franken, complementary to the paper titled "Automatic Egyptian Hieroglyph Recognition by Retrieving Images as Texts" (ACM Conference on Multimedia, 2013). The dataset contains:
+This project uses a dataset compiled from various sources containing:
 
-- 4,210 hieroglyph images (of which 179 are labeled as UNKNOWN)
-- 171 distinct classes (according to the Gardiner Sign List)
-- Images extracted from 10 different plates from "The Pyramid of Unas" (Alexandre Piankoff, 1955)
-- Both manually annotated and automatically detected hieroglyphs
+- High-quality hieroglyph images organized by Gardiner code classification
+- Multiple classes representing distinct hieroglyphic symbols
+- Various lighting, angles, and contexts for robust recognition
+
+The raw dataset was obtained from the [EgyptianHieroglyphicText](https://github.com/rfuentesfe/EgyptianHieroglyphicText/tree/main) repository, which provides a comprehensive collection of hieroglyph images structured according to Gardiner's classification system. This dataset consists of 310 classes and 13,729 images representing hieroglyphs on different materials, including carved or painted stone stelae.
 
 ## Project Structure
 
 ```
 ancient-script-decoder/
-├── Dataset/                      # Original dataset folder
+├── dataset_new/                  # Improved hierarchical dataset for training (not included in repo)
+├── advanced_output/              # Model output, checkpoints, and evaluation metrics
 ├── app.py                        # Streamlit web application
-├── evaluate.py                   # Evaluation script
-├── model.py                      # Model architecture implementations
-├── preprocessing.py              # Data preprocessing utilities
-├── train.py                      # Training script
-├── hieroglyph_recognition/       # Generated folder with processed data and models
+├── advanced_model.py             # Advanced model architecture implementation
+├── advanced_preprocessing.py     # Advanced data preprocessing utilities
+├── train_advanced.py             # Advanced model training script
+├── run_advanced_training.sh      # Convenience script for training the model
+├── setup_environment.sh          # Script to set up the environment
+├── export_model_for_app.py       # Utility to export model for use in the app
 └── README.md                     # This file
 ```
 
@@ -46,39 +50,21 @@ git clone https://github.com/yourusername/ancient-script-decoder.git
 cd ancient-script-decoder
 ```
 
-2. Install the required dependencies:
+2. Run the setup script to create necessary directories and install dependencies:
 ```bash
-pip install -r requirements.txt
+./setup_environment.sh
 ```
+
+3. Download the dataset (only needed for training new models):
+   - Visit the [EgyptianHieroglyphicText repository](https://github.com/rfuentesfe/EgyptianHieroglyphicText/tree/main)
+   - Clone the repository and copy the hieroglyph images into the `dataset_new/` directory
+   - Ensure images are organized by Gardiner code (e.g., a1, a2, etc.)
 
 ## Usage
 
-### Data Preprocessing and Model Training
+### Running the Application
 
-To preprocess the data and train a model:
-
-```bash
-python train.py --model_type cnn --epochs 50 --batch_size 32 --export_model
-```
-
-Available model types:
-- `cnn`: Standard convolutional neural network
-- `efficientnet`: Transfer learning with EfficientNetB0
-- `transformer`: Vision Transformer-inspired architecture
-
-### Model Evaluation
-
-To evaluate a trained model:
-
-```bash
-python evaluate.py
-```
-
-This will generate detailed evaluation metrics, confusion matrices, and visualizations in the `hieroglyph_recognition/evaluation` directory.
-
-### Web Interface
-
-To run the web interface:
+The trained model (app_ready_model.h5) is included in the repository, so you can run the application immediately:
 
 ```bash
 streamlit run app.py
@@ -86,53 +72,133 @@ streamlit run app.py
 
 The application will be available at `http://localhost:8501`.
 
-## Model Architectures
+### Advanced Model Training
 
-### CNN Model
+To train the advanced model with optimal parameters:
 
-A standard convolutional neural network with the following architecture:
-- Three convolutional blocks with increasing filter sizes (32 → 64 → 128)
+```bash
+./run_advanced_training.sh
+```
+
+This script configures and runs the training process with optimized hyperparameters, producing a high-performance model.
+
+### Manual Advanced Training
+
+For custom training configurations:
+
+```bash
+python train_advanced.py --model_type advanced_cnn --epochs 200 --batch_size 32 --patience 30 --img_height 224 --img_width 224
+```
+
+### Preparing Model for App
+
+To prepare a trained model for use in the app:
+
+```bash
+python export_model_for_app.py --checkpoint advanced_output/advanced_model_TIMESTAMP/model_checkpoint_XX_ACCURACY.h5 --output advanced_output/app_ready_model.h5
+```
+
+## Advanced Model Architecture
+
+Our state-of-the-art model employs several advanced techniques:
+
+### Advanced CNN Architecture
+- Deep convolutional neural network with residual connections
 - Batch normalization and dropout for regularization
-- Dense layers for classification
+- Swish activation functions for improved gradient flow
+- Squeeze-and-excite blocks for channel-wise attention
 
-### EfficientNet Model
+### Learning Rate Optimization
+- TensorFlow-friendly cosine decay scheduler with warmup
+- Gradual learning rate warmup (5% of epochs) followed by cosine decay
+- Adaptive learning rate adjustments based on validation performance
 
-A transfer learning approach using EfficientNetB0:
-- Pretrained convolutional base (frozen by default)
-- Custom classification head
-- Option to unfreeze base model for fine-tuning
+### Advanced Training Features
+- Mixed-precision training for improved performance
+- Early stopping mechanism to prevent overfitting
+- Model checkpointing to save the best-performing model versions
+- Comprehensive TensorBoard logging for monitoring training progress
 
-### Transformer Model
+## Model Performance and Checkpoints
 
-A Vision Transformer (ViT) inspired model:
-- Image patches processed with positional embeddings
-- Self-attention mechanisms for contextual understanding
-- MLP head for classification
+The advanced model training reached epoch 68 before early stopping was triggered due to no further improvement in validation accuracy. The total training time was approximately 3.5 hours on a standard GPU-equipped machine. Key performance metrics:
 
-## Performance
+- **Best Validation Accuracy**: 82.66% (achieved at epoch 60)
+- **Top-3 Accuracy**: ~95% (consistently throughout later epochs)
+- **Training Accuracy**: ~85-87% (at later stages of training)
 
-The models are evaluated using the following metrics:
-- Accuracy
-- Precision, Recall, and F1-score (per class and macro/weighted average)
-- Confusion matrix
-- Visualization of best and worst-performing classes
+### Checkpoint Evolution
+
+The model showed clear progression through training:
+
+1. **Initial Learning Phase (Epochs 1-10)**:
+   - Accuracy improved from 3.42% to 26.77%
+   - Model began to recognize basic patterns
+
+2. **Rapid Improvement Phase (Epochs 11-30)**:
+   - Accuracy jumped from 37.41% to 71.63%
+   - Model established foundational feature recognition capabilities
+   - Learning rate adjustments helped maintain steady improvements
+
+3. **Refinement Phase (Epochs 31-50)**:
+   - Accuracy improved more gradually from 71.63% to 79.70%
+   - Model began focusing on more difficult distinctions between similar hieroglyphs
+   - Top-3 accuracy reached ~92%
+
+4. **Fine-tuning Phase (Epochs 51-68)**:
+   - Accuracy reached its peak at 82.66% (epoch 60)
+   - Validation accuracy plateaued, triggering early stopping at epoch 68
+   - Top-3 accuracy stabilized at ~95%
+
+## Visualizations
+
+The training process generated several informative visualizations that help understand both the dataset and the model's performance:
+
+### Sample Hieroglyphs
+![Sample Hieroglyphs](advanced_output/sample_hieroglyphs.png)
+*A selection of hieroglyph images from the training dataset showing the variety of symbols and their Gardiner codes.*
+
+### Data Augmentation
+![Augmentation Examples](advanced_output/augmentation_examples.png)
+*Examples of data augmentation techniques applied to hieroglyph images, increasing the diversity of the training data.*
+
+### Class Distribution
+![Class Distribution](advanced_output/class_distribution.png)
+*Distribution of the top 30 hieroglyph classes by sample count in the dataset.*
+
+### Class Distribution Histogram
+![Class Distribution Histogram](advanced_output/class_distribution_histogram.png)
+*Histogram showing the distribution of samples per hieroglyph class across the entire dataset.*
+
+## Technical Details
+
+### TensorFlow-Optimized Learning Rate Scheduler
+The model uses a custom implementation of cosine decay with warmup that is fully TensorFlow-compatible, avoiding Python-based conditional logic that would cause graph execution errors. This scheduler:
+
+- Implements a smooth transition from warmup to decay phase
+- Uses `tf.cond` for flow control instead of Python conditionals
+- Ensures gradients flow properly through the computation graph
+- Facilitates better model convergence
+
+### Advantages of the Advanced Model
+- **Robust Feature Extraction**: The architectural design allows for multi-scale feature extraction
+- **Efficient Training**: Mixed-precision and optimized learning rate scheduling reduce training time
+- **Better Generalization**: Advanced regularization techniques prevent overfitting
+- **Production-Ready**: Model is saved in multiple formats for easy deployment
 
 ## Future Improvements
 
-This project is in its early stages. Planned improvements include:
+Planned improvements include:
 
-- Expanding the database of hieroglyph meanings and phonetic values
-- Implementing more advanced hieroglyph detection algorithms
+- Expanding the hieroglyph database with more context-specific examples
+- Implementing ensemble techniques to further improve accuracy
 - Adding context-aware translation by understanding hieroglyph sequences
 - Developing a system that can interpret complete hieroglyphic texts
-- Incorporating historical and cultural context to improve translations
 - Building a mobile application for on-site archaeological use
-- Adding support for other ancient scripts (Sumerian, Mayan, etc.)
 
 ## Credits
 
-- Dataset: Morris Franken (ACM Conference on Multimedia, 2013)
-- Original hieroglyphic texts: "The Pyramid of Unas" (Alexandre Piankoff, 1955)
+- Dataset compilation and organization from various academic sources
 - Gardiner Sign List for hieroglyph categorization
 - Inspiration: Graham Hancock, Randall Carlson, and others exploring ancient civilizations
 
@@ -142,9 +208,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Citation
 
-If you use this code or dataset in your research, please cite:
+If you use this code or dataset in your research, please cite both the original dataset work and the enhanced dataset:
 
 ```
 Franken, M., & van Gemert, J. C. (2013). Automatic Egyptian Hieroglyph Recognition by Retrieving Images as Texts. 
 In Proceedings of the 21st ACM International Conference on Multimedia (pp. 765-768). ACM.
+
+R. Fuentes-Ferrer, J. Duque-Domingo, and P.J. Herrera (2025). Recognition of Egyptian Hieroglyphic Texts through 
+Focused Generic Segmentation and Cross-Validation Voting. Applied Soft Computing, 
+DOI: https://doi.org/10.1016/j.asoc.2025.112793
 ```

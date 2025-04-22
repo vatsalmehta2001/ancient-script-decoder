@@ -172,3 +172,46 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Model checkpoints and large files
+advanced_output/advanced_model_*/
+dataset_new/
+*.h5
+uploaded_instances/
+
+# Logs
+logs/
+*.log
+
+# Mac OS specific
+.DS_Store
+
+# Keep specific files even if they match patterns above
+!advanced_output/class_mapping.json
+!advanced_output/training_config.json
+!advanced_output/README.md
+!advanced_output/app_ready_model.h5
+# Temporary directories and files to exclude
+backups/
+clean_repo/
+transfer_repo.sh
+update_main_repo.sh
+.gitignore-temp
+
+# Instance uploads folder (except README)
+uploaded_instances/*
+!uploaded_instances/README.md
+
+# Dataset folder (except README)
+Dataset/*
+!Dataset/README.md
+
+# Logs and temporary files
+*.log
+.DS_Store
+.idea/ 
