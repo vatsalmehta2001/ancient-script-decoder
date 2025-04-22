@@ -2,19 +2,27 @@
 
 My passion for ancient Egyptian history was ignited through conversations on Joe Rogan's podcast featuring Graham Hancock and Randall Carlson. Their discussions led me down a fascinating rabbit hole exploring Egyptian mythology, hieroglyphics, and the mysteries surrounding their ancient civilization. I was particularly captivated to learn that even Nikola Tesla was once extremely passionate about Egyptian origins and the true purpose of the pyramids. This project represents my first step in combining my interests in ancient history with modern AI technology.
 
+![Hieroglyph Recognition Demo](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/demo_screenshot.png)
+
 ## Project Overview
+
 This project uses deep learning to recognize and decipher ancient Egyptian hieroglyphs. The system can identify individual hieroglyphs from the Gardiner Sign List using computer vision and machine learning techniques.
 
-**Note: This project is continuously evolving.** Currently, the system can identify hieroglyphic symbols with high confidence levels using a state-of-the-art advanced model.
+**Note: This project is continuously evolving.** Currently, the system can identify hieroglyphic symbols with high confidence levels using a state-of-the-art advanced model I built from scratch during my university studies.
 
 ## Features
 
 - **Advanced Hieroglyph Recognition**: Identifies individual hieroglyphs from images with high accuracy (82.66% top-1, 95% top-3 accuracy)
-- **State-of-the-Art Architecture**: Implements TensorFlow-based CNN model with residual connections and advanced training techniques
+- **State-of-the-Art Architecture**: Implements TensorFlow-based model that combines:
+  1. **Convolutional Neural Network (CNN)** with residual connections and squeeze-excitation blocks
+  2. **EfficientNetV2S** for transfer learning capabilities 
+  3. **Vision Transformer (ViT)** for attention-based feature extraction
 - **Optimized Learning Rate Scheduling**: Uses cosine decay with warmup for improved convergence
 - **Web Interface**: User-friendly Streamlit application for uploading and analyzing hieroglyphic texts
 - **Comprehensive Evaluation**: Detailed metrics and visualizations to understand model performance
 - **Detection System**: Automatically detects and segments individual hieroglyphs in complex scenes
+
+![Model Architecture](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/model_architecture.png)
 
 ## Dataset
 
@@ -26,12 +34,24 @@ This project uses a dataset compiled from various sources containing:
 
 The raw dataset was obtained from the [EgyptianHieroglyphicText](https://github.com/rfuentesfe/EgyptianHieroglyphicText/tree/main) repository, which provides a comprehensive collection of hieroglyph images structured according to Gardiner's classification system. This dataset consists of 310 classes and 13,729 images representing hieroglyphs on different materials, including carved or painted stone stelae.
 
+## Advanced Training Techniques
+
+I implemented several advanced techniques to achieve high recognition accuracy:
+
+- Learning rate warmup with cosine decay
+- Label smoothing for better generalization
+- Mixed precision training for improved performance
+- Dropout and batch normalization for regularization
+
+![Example Recognition](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/example_recognition.png)
+
 ## Project Structure
 
 ```
 ancient-script-decoder/
 ├── dataset_new/                  # Improved hierarchical dataset for training (not included in repo)
 ├── advanced_output/              # Model output, checkpoints, and evaluation metrics
+│   └── app_ready_model.h5        # Ready-to-use model for the app
 ├── app.py                        # Streamlit web application
 ├── advanced_model.py             # Advanced model architecture implementation
 ├── advanced_preprocessing.py     # Advanced data preprocessing utilities
@@ -46,7 +66,7 @@ ancient-script-decoder/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ancient-script-decoder.git
+git clone https://github.com/vatsalmehta2001/ancient-script-decoder.git
 cd ancient-script-decoder
 ```
 
@@ -70,7 +90,10 @@ The trained model (app_ready_model.h5) is included in the repository, so you can
 streamlit run app.py
 ```
 
-The application will be available at `http://localhost:8501`.
+The application will open in your web browser, allowing you to:
+1. Upload images containing hieroglyphs
+2. View real-time predictions with confidence scores
+3. Explore the top predictions for each symbol
 
 ### Advanced Model Training
 
@@ -100,7 +123,7 @@ python export_model_for_app.py --checkpoint advanced_output/advanced_model_TIMES
 
 ## Advanced Model Architecture
 
-Our state-of-the-art model employs several advanced techniques:
+My state-of-the-art model employs several advanced techniques:
 
 ### Advanced CNN Architecture
 - Deep convolutional neural network with residual connections
@@ -118,6 +141,17 @@ Our state-of-the-art model employs several advanced techniques:
 - Early stopping mechanism to prevent overfitting
 - Model checkpointing to save the best-performing model versions
 - Comprehensive TensorBoard logging for monitoring training progress
+
+## Development Process
+
+I developed this project over several months as part of my university studies, following this process:
+
+1. **Research**: Studied hieroglyphic symbols and existing classification methods
+2. **Data Collection**: Gathered and curated hieroglyph images from various sources
+3. **Model Development**: Experimented with different architectures, hyperparameters
+4. **Training Infrastructure**: Built robust training pipeline with checkpointing and metrics
+5. **Application Development**: Created a user-friendly interface for real-world use
+6. **Optimization**: Fine-tuned the model for better accuracy and performance
 
 ## Model Performance and Checkpoints
 
@@ -155,20 +189,16 @@ The model showed clear progression through training:
 The training process generated several informative visualizations that help understand both the dataset and the model's performance:
 
 ### Sample Hieroglyphs
-![Sample Hieroglyphs](advanced_output/sample_hieroglyphs.png)
+![Sample Hieroglyphs](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/sample_hieroglyphs.png)
 *A selection of hieroglyph images from the training dataset showing the variety of symbols and their Gardiner codes.*
 
 ### Data Augmentation
-![Augmentation Examples](advanced_output/augmentation_examples.png)
+![Augmentation Examples](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/augmentation_examples.png)
 *Examples of data augmentation techniques applied to hieroglyph images, increasing the diversity of the training data.*
 
 ### Class Distribution
-![Class Distribution](advanced_output/class_distribution.png)
+![Class Distribution](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/class_distribution.png)
 *Distribution of the top 30 hieroglyph classes by sample count in the dataset.*
-
-### Class Distribution Histogram
-![Class Distribution Histogram](advanced_output/class_distribution_histogram.png)
-*Histogram showing the distribution of samples per hieroglyph class across the entire dataset.*
 
 ## Technical Details
 
@@ -195,6 +225,16 @@ Planned improvements include:
 - Adding context-aware translation by understanding hieroglyph sequences
 - Developing a system that can interpret complete hieroglyphic texts
 - Building a mobile application for on-site archaeological use
+
+## Creating a More Complete Documentation
+
+To complete the documentation with proper images, I need to:
+
+1. Create the `images/` directory
+2. Take screenshots of the application in action
+3. Create diagrams of the model architecture
+4. Add examples of successful recognitions
+5. Replace the image placeholder URLs with actual screenshots
 
 ## Credits
 
