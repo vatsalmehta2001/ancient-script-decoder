@@ -190,15 +190,15 @@ The training process generated several informative visualizations that help unde
 
 ### Sample Hieroglyphs
 ![Sample Hieroglyphs](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/sample_hieroglyphs.png)
-*A selection of hieroglyph images from the training dataset showing the variety of symbols and their Gardiner codes.*
+*A selection of hieroglyph images from the advanced model training dataset (82.66% accuracy model) showing the variety of symbols and their Gardiner codes.*
 
 ### Data Augmentation
 ![Augmentation Examples](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/augmentation_examples.png)
-*Examples of data augmentation techniques applied to hieroglyph images, increasing the diversity of the training data.*
+*Examples of data augmentation techniques used in the advanced model training (82.66% accuracy) applied to hieroglyph images, increasing the diversity of the training data.*
 
 ### Class Distribution
 ![Class Distribution](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/class_distribution.png)
-*Distribution of the top 30 hieroglyph classes by sample count in the dataset.*
+*Distribution of the top 30 hieroglyph classes by sample count in the advanced model dataset (82.66% accuracy model).*
 
 ## Technical Details
 
