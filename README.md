@@ -2,7 +2,7 @@
 
 My passion for ancient Egyptian history was ignited through conversations on Joe Rogan's podcast featuring Graham Hancock and Randall Carlson. Their discussions led me down a fascinating rabbit hole exploring Egyptian mythology, hieroglyphics, and the mysteries surrounding their ancient civilization. I was particularly captivated to learn that even Nikola Tesla was once extremely passionate about Egyptian origins and the true purpose of the pyramids. This project represents my first step in combining my interests in ancient history with modern AI technology.
 
-![Hieroglyph Recognition Demo](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/demo_screenshot.png)
+[![Hieroglyph Recognition Demo](https://github.com/vatsalmehta2001/ancient-script-decoder/raw/main/images/demo_screenshot.png)](https://hieroglyph-analyzer.streamlit.app/)
 
 ## ⚠️ Important Note on Model Accuracy
 
@@ -30,7 +30,7 @@ The application utilizes a Streamlit interface for ease of use and deployment.
 
 ### Online Version
 
-Visit the live demo at [Streamlit Cloud](https://ancient-script-decoder.streamlit.app/)
+Visit the live demo at [Streamlit Cloud](https://hieroglyph-analyzer.streamlit.app/)
 
 ### Local Installation
 
