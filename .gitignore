@@ -196,6 +196,12 @@ logs/
 !advanced_output/training_config.json
 !advanced_output/README.md
 !advanced_output/app_ready_model.h5
+
+# Local development files
+test_*.py
+!test_images/
+!test_hieroglyph_analyzer.py
+
 # Temporary directories and files to exclude
 backups/
 clean_repo/
@@ -206,6 +212,10 @@ update_main_repo.sh
 # Instance uploads folder (except README)
 uploaded_instances/*
 !uploaded_instances/README.md
+
+# Temp folders for runtime - will be created by setup script
+uploaded_images/
+analyzer_output/
 
 # Dataset folder (except README)
 Dataset/*
